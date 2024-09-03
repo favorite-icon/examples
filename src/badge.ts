@@ -1,5 +1,6 @@
 import { FaviconBadge } from 'favorite-icon-badge';
 import './common';
+import { FaviconBadgePositionX, FaviconBadgePositionY } from 'favorite-icon-badge/dist/types';
 
 const inputBackgroundColor = document.querySelector('#backgroundColor') as HTMLInputElement;
 const inputTextColor = document.querySelector('#textColor') as HTMLInputElement;
@@ -15,8 +16,8 @@ let imageBadge = new FaviconBadge();
 function updateSettings() {
     const count = parseInt(inputCount.value, 10);
     const maxCount = parseInt(inputMaxCount.value, 10);
-    const positionX = Number(inputPositionX.value);
-    const positionY = Number(inputPositionY.value);
+    const positionX = inputPositionX.value as FaviconBadgePositionX;
+    const positionY = inputPositionY.value as FaviconBadgePositionY;
 
     favBadge = new FaviconBadge({
         backgroundColor: inputBackgroundColor.value,
