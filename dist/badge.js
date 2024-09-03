@@ -205,12 +205,12 @@
 
     var pages = [
         'index',
+        'video',
         'badge',
-        'blinking-dot',
         'dot',
+        'blinking-dot',
         'emoji',
         'status',
-        'video',
     ];
     window.addEventListener('load', function () {
         var prev = pages[pages.length - 1];
@@ -239,8 +239,8 @@
     function updateSettings() {
         var count = parseInt(inputCount.value, 10);
         var maxCount = parseInt(inputMaxCount.value, 10);
-        var positionX = Number(inputPositionX.value);
-        var positionY = Number(inputPositionY.value);
+        var positionX = inputPositionX.value;
+        var positionY = inputPositionY.value;
         favBadge = new FaviconBadge({
             backgroundColor: inputBackgroundColor.value,
             textColor: inputTextColor.value,
