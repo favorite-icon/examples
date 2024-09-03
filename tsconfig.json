@@ -1,0 +1,20 @@
+{
+    "compilerOptions": {
+        "module": "es6",
+        "resolveJsonModule": true,
+        "esModuleInterop": true,
+        "outDir": "./dist/",
+        "target": "es5",
+        "allowJs": false,
+        "lib": [
+            "es6",
+            "dom"
+        ],
+        "moduleResolution": "node",
+        "noImplicitAny": true,
+        "noImplicitThis": true,
+        "strictNullChecks": false,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true
+    }
+}

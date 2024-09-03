@@ -1,0 +1,36 @@
+{
+  "name": "favorite-icon-main",
+  "version": "1.0.0",
+  "description": "Libraries for manipulating desktop favicon",
+  "author": {
+    "name": "Denis Seleznev",
+    "email": "hcodes@yandex.ru",
+    "url": "https://github.com/hcodes/favorite-icon"
+  },
+  "type": "module",
+  "license": "MIT",
+  "keywords": [
+    "favorite icon",
+    "favicon",
+    "favico"
+  ],
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-typescript": "^11.1.6",
+    "favorite-icon": "^1.1.0",
+    "favorite-icon-badge": "^1.2.0",
+    "favorite-icon-dot": "^1.2.0",
+    "favorite-icon-emoji": "^1.2.0",
+    "favorite-icon-status": "^1.2.0",
+    "favorite-icon-video": "^2.3.0",
+    "favorite-icon-timeout-worker": "^1.0.2",
+    "rollup": "^4.21.2",
+    "tslib": "^2.7.0",
+    "typescript": "^5.5.4"
+  },
+  "scripts": {
+    "build": "rollup -c rollup.config.mjs"
+  },
+  "private": true
+}
