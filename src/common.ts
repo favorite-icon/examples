@@ -1,11 +1,11 @@
 const pages = [
     'index',
+    'video',
     'badge',
-    'blinking-dot',
     'dot',
+    'blinking-dot',
     'emoji',
     'status',
-    'video',
 ];
 
 window.addEventListener('load', () => {
