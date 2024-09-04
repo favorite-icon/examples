@@ -1,20 +1,52 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Favorite Icon</title>
+  <title>Set Favorite Icon</title>
   <meta charset="utf-8" />
-  <link rel="stylesheet" href="./res/tab.css" />
-  <link rel="stylesheet" href="./res/common.css" />
+  <link rel="stylesheet" href="./static/css/tab.css" />
+  <link rel="stylesheet" href="./static/css/common.css" />
+  <style>
+    .icon-list {
+      padding: 0;
+      margin: 0;
+    }
+
+    .icon-list li {
+      vertical-align: middle;
+      list-style-type: none;
+      margin: .5em 0;
+      padding:0;
+    }
+
+    .icon-list img {
+      width: 16px;
+      height: 16px;
+    }
+
+    .icon-list input {
+      margin-top: -3px;
+    }
+  </style>
 </head>
-<body>
+<body autocomplete="off">
   <div class="tab">
     <div class="tab__favicon"><img id="preview" /></div>
     <div class="tab__text">Favicon</div>
   </div>
+    <p>
+      Image: <input id="favicon-src" type="text" value="./static/image/favicon.svg" /> <input id="button-set" type="button" value="Set favicon" />
+    </p>
 
-  <p>
-    Image: <input id="favicon-src" type="text" value="./res/favicon.svg" /> <input id="button-set" type="button" value="Set" />
-  </p>
+    <p>
+      <ul class="icon-list">
+        <li><label><input name="favicon" type="radio" value="static/image/wikipedia.ico"/> <img src="static/image/wikipedia.ico" /> Wikipedia</label></li>
+        <li><label><input name="favicon" type="radio" value="static/image/github.ico"/> <img src="static/image/github.ico" /> Github</label></li>
+        <li><label><input name="favicon" type="radio" value="static/image/google.ico"/> <img src="static/image/google.ico" /> Google</label></li>
+      </ul>
+    </p>
+
+    <p><button id="switcher">Switch</button></p>
+
   <script src="./dist/index.js" async></script>
 </body>
 </html>

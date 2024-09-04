@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    function hasSupport$1() {
+    function hasSupport$1$1() {
         if (typeof window === 'undefined') {
             return false;
         }
@@ -15,28 +15,28 @@
         return chrome || firefox || opera;
     }
 
-    var PNG_MIME_TYPE = 'image/png';
-    var hasSupport = hasSupport$1();
-    var Favicon = /** @class */ (function () {
+    var PNG_MIME_TYPE$1 = 'image/png';
+    var hasSupport$2 = hasSupport$1$1();
+    var Favicon$1 = /** @class */ (function () {
         function Favicon() {
         }
         Favicon.set = function (src, elems) {
-            if (!hasSupport) {
+            if (!hasSupport$2) {
                 return;
             }
             var items = elems || this.icons;
             (Array.isArray(items) ? items : [items]).forEach(function (item) {
-                item.setAttribute(item instanceof HTMLImageElement ? 'src' : 'href', src instanceof HTMLCanvasElement ? src.toDataURL(PNG_MIME_TYPE) : src);
+                item.setAttribute(item instanceof HTMLImageElement ? 'src' : 'href', src instanceof HTMLCanvasElement ? src.toDataURL(PNG_MIME_TYPE$1) : src);
             });
         };
         Favicon.reset = function () {
-            if (!hasSupport) {
+            if (!hasSupport$2) {
                 return;
             }
             this.set(Favicon.originalSrc);
         };
         Favicon.searchIcons = function () {
-            if (!hasSupport) {
+            if (!hasSupport$2) {
                 return [];
             }
             var result = [];
@@ -53,27 +53,27 @@
                 result.push(icon);
             }
             result.forEach(function (item) {
-                item.setAttribute('type', PNG_MIME_TYPE);
+                item.setAttribute('type', PNG_MIME_TYPE$1);
             });
             return result;
         };
         var _a;
         Favicon.icons = Favicon.searchIcons();
-        Favicon.originalSrc = hasSupport ? (_a = Favicon.icons[Favicon.icons.length - 1]) === null || _a === void 0 ? void 0 : _a.href : '';
+        Favicon.originalSrc = hasSupport$2 ? (_a = Favicon.icons[Favicon.icons.length - 1]) === null || _a === void 0 ? void 0 : _a.href : '';
         Favicon.size = 32;
-        Favicon.hasSupport = hasSupport;
+        Favicon.hasSupport = hasSupport$2;
         return Favicon;
     }());
 
     var defaultOptions = {
         alpha: 1,
         backgroundColor: '#ff0000',
-        faviconSrc: Favicon.originalSrc,
+        faviconSrc: Favicon$1.originalSrc,
         links: undefined,
         positionX: 'right',
         positionY: 'top',
         radius: 5,
-        size: Favicon.size,
+        size: Favicon$1.size,
         strokeColor: '#000',
     };
     var FaviconDot = /** @class */ (function () {
@@ -104,7 +104,7 @@
             if (options) {
                 this.options = this.updateOptions(options);
             }
-            if (this.imageReady && Favicon.hasSupport) {
+            if (this.imageReady && Favicon$1.hasSupport) {
                 this.draw();
             }
         };
@@ -143,10 +143,10 @@
             context.globalAlpha = alpha;
             context.fillStyle = this.options.backgroundColor;
             context.strokeStyle = this.options.strokeColor;
-            var radius = this.options.radius * size / Favicon.size;
+            var radius = this.options.radius * size / Favicon$1.size;
             var x = 0;
             if (typeof positionX === 'number') {
-                x = positionX * size / Favicon.size;
+                x = positionX * size / Favicon$1.size;
             }
             else {
                 x = radius;
@@ -159,7 +159,7 @@
             }
             var y = 0;
             if (typeof positionY === 'number') {
-                y = positionY * size / Favicon.size;
+                y = positionY * size / Favicon$1.size;
             }
             else {
                 y = radius;
@@ -177,11 +177,11 @@
             context.stroke();
             context.closePath();
             context.restore();
-            Favicon.set(this.canvas, this.options.links);
+            Favicon$1.set(this.canvas, this.options.links);
         };
         FaviconDot.prototype.hide = function () {
             this.isShow = false;
-            Favicon.set(this.options.faviconSrc, this.options.links);
+            Favicon$1.set(this.options.faviconSrc, this.options.links);
         };
         FaviconDot.prototype.destroy = function () {
             this.canvas = null;
@@ -269,6 +269,70 @@
         return FaviconTimeoutWorker;
     }());
 
+    function hasSupport$1() {
+        if (typeof window === 'undefined') {
+            return false;
+        }
+        var ua = navigator.userAgent;
+        if (ua.search(/Mobi|Android/i) > -1) {
+            return false;
+        }
+        var opera = Boolean(window.opera) || ua.indexOf('Opera') > -1;
+        var firefox = ua.toLowerCase().indexOf('firefox') > -1;
+        var chrome = Boolean(window.chrome);
+        return chrome || firefox || opera;
+    }
+
+    var PNG_MIME_TYPE = 'image/png';
+    var hasSupport = hasSupport$1();
+    var Favicon = /** @class */ (function () {
+        function Favicon() {
+        }
+        Favicon.set = function (src, elems) {
+            if (!hasSupport) {
+                return;
+            }
+            var items = elems || this.icons;
+            (Array.isArray(items) ? items : [items]).forEach(function (item) {
+                item.setAttribute(item instanceof HTMLImageElement ? 'src' : 'href', src instanceof HTMLCanvasElement ? src.toDataURL(PNG_MIME_TYPE) : src);
+            });
+        };
+        Favicon.reset = function () {
+            if (!hasSupport) {
+                return;
+            }
+            this.set(Favicon.originalSrc);
+        };
+        Favicon.searchIcons = function () {
+            if (!hasSupport) {
+                return [];
+            }
+            var result = [];
+            var links = document.querySelectorAll('head link');
+            for (var i = 0; i < links.length; i++) {
+                if ((/(^|\s)icon(\s|$)/i).test(links[i].rel)) {
+                    result.push(links[i]);
+                }
+            }
+            if (!result.length) {
+                var icon = document.createElement('link');
+                icon.setAttribute('rel', 'icon');
+                document.head.appendChild(icon);
+                result.push(icon);
+            }
+            result.forEach(function (item) {
+                item.setAttribute('type', PNG_MIME_TYPE);
+            });
+            return result;
+        };
+        var _a;
+        Favicon.icons = Favicon.searchIcons();
+        Favicon.originalSrc = hasSupport ? (_a = Favicon.icons[Favicon.icons.length - 1]) === null || _a === void 0 ? void 0 : _a.href : '';
+        Favicon.size = 32;
+        Favicon.hasSupport = hasSupport;
+        return Favicon;
+    }());
+
     var pages = [
         'index',
         'video',
@@ -291,6 +355,12 @@
         var nav = document.createElement('div');
         nav.innerHTML = "<div class=\"nav\">        <a href=\"https://github.com/favorite-icon\" class=\"button back\">\uD83C\uDFE0</a>        <a href=\"./".concat(prev, ".html\" class=\"button prev\">\u25C0</a>        ").concat(num + 1, "/").concat(pages.length, "\n        <a href=\"./").concat(next, ".html\" class=\"button next\">\u25B6</a>        </div>");
         document.body.appendChild(nav);
+        if (!Favicon.hasSupport) {
+            var noSupport = document.createElement('div');
+            noSupport.classList.add('no-support');
+            noSupport.innerText = 'Your browser does not support changing favicon. To view this example, use other desktop browsers, Google Chrome or Mozilla Firefox.';
+            document.body.appendChild(noSupport);
+        }
     }, false);
 
     var favDot = new FaviconDot();

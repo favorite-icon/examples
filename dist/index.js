@@ -87,12 +87,46 @@
         var nav = document.createElement('div');
         nav.innerHTML = "<div class=\"nav\">        <a href=\"https://github.com/favorite-icon\" class=\"button back\">\uD83C\uDFE0</a>        <a href=\"./".concat(prev, ".html\" class=\"button prev\">\u25C0</a>        ").concat(num + 1, "/").concat(pages.length, "\n        <a href=\"./").concat(next, ".html\" class=\"button next\">\u25B6</a>        </div>");
         document.body.appendChild(nav);
+        if (!Favicon.hasSupport) {
+            var noSupport = document.createElement('div');
+            noSupport.classList.add('no-support');
+            noSupport.innerText = 'Your browser does not support changing favicon. To view this example, use other desktop browsers, Google Chrome or Mozilla Firefox.';
+            document.body.appendChild(noSupport);
+        }
     }, false);
 
+    function setFavicon(url) {
+        var preview = document.querySelector('#preview');
+        Favicon.set(url, preview);
+        Favicon.set(url);
+    }
+    var timerId = 0;
+    var counter = 0;
+    var radios = document.querySelectorAll('.icon-list input');
+    var _loop_1 = function (i) {
+        var item = radios[i];
+        item.onclick = function () {
+            clearInterval(timerId);
+            setFavicon(item.value);
+        };
+    };
+    for (var i = 0; i < radios.length; i++) {
+        _loop_1(i);
+    }
     document.querySelector('#button-set').onclick = function () {
         var value = document.querySelector('#favicon-src').value;
-        Favicon.set(value, document.querySelector('#preview'));
-        Favicon.set(value);
+        clearInterval(timerId);
+        setFavicon(value);
+    };
+    document.querySelector('#switcher').onclick = function () {
+        clearInterval(timerId);
+        timerId = setInterval(function () {
+            counter++;
+            if (counter >= radios.length) {
+                counter = 0;
+            }
+            setFavicon(radios[counter].value);
+        }, 1000);
     };
 
 })();

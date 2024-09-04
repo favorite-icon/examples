@@ -1,3 +1,5 @@
+import { Favicon } from "favorite-icon";
+
 const pages = [
     'index',
     'video',
@@ -30,4 +32,11 @@ window.addEventListener('load', () => {
         </div>`;
 
     document.body.appendChild(nav);
+
+    if (!Favicon.hasSupport) {
+        const noSupport = document.createElement('div');
+        noSupport.classList.add('no-support');
+        noSupport.innerText = 'Your browser does not support changing favicon. To view this example, use other desktop browsers, Google Chrome or Mozilla Firefox.';
+        document.body.appendChild(noSupport)
+    }
 }, false);
