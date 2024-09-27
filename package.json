@@ -15,19 +15,19 @@
     "favico"
   ],
   "devDependencies": {
-    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-node-resolve": "^15.3.0",
     "@rollup/plugin-terser": "^0.4.4",
-    "@rollup/plugin-typescript": "^11.1.6",
-    "favorite-icon": "^1.1.0",
-    "favorite-icon-badge": "^1.2.0",
-    "favorite-icon-dot": "^1.2.0",
-    "favorite-icon-emoji": "^1.2.0",
-    "favorite-icon-status": "^1.2.0",
-    "favorite-icon-video": "^2.3.0",
-    "favorite-icon-timeout-worker": "^1.0.2",
-    "rollup": "^4.21.2",
+    "@rollup/plugin-typescript": "^12.1.0",
+    "favorite-icon": "^1.1.2",
+    "favorite-icon-badge": "^1.2.2",
+    "favorite-icon-dot": "^1.2.2",
+    "favorite-icon-emoji": "^1.2.2",
+    "favorite-icon-status": "^1.2.3",
+    "favorite-icon-video": "^2.3.2",
+    "favorite-icon-timeout-worker": "^1.0.6",
+    "rollup": "^4.22.4",
     "tslib": "^2.7.0",
-    "typescript": "^5.5.4"
+    "typescript": "^5.6.2"
   },
   "scripts": {
     "build": "rollup -c rollup.config.mjs"

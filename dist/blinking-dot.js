@@ -258,12 +258,15 @@
             this.worker.postMessage(message);
             this.idMap.delete(timeoutId);
         };
-        FaviconTimeoutWorker.prototype.getTimeoutId = function () {
-            return FaviconTimeoutWorker.gid++;
-        };
         FaviconTimeoutWorker.prototype.terminate = function () {
+            if (!this.hasSupport) {
+                return;
+            }
             this.idMap.clear();
             this.worker.terminate();
+        };
+        FaviconTimeoutWorker.prototype.getTimeoutId = function () {
+            return FaviconTimeoutWorker.gid++;
         };
         FaviconTimeoutWorker.gid = 1;
         return FaviconTimeoutWorker;
